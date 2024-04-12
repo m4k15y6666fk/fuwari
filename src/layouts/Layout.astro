@@ -8,6 +8,8 @@ import ImageWrapper from "@components/misc/ImageWrapper.astro";
 import {pathsEqual} from "@utils/url-utils";
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import {siteConfig} from "@/config";
+import {i18n} from "@i18n/translation";
+import I18nKey from "@i18n/i18nKey";
 
 interface Props {
 	title: string;
@@ -61,10 +63,13 @@ if (title) {
 	pageTitle = `${siteConfig.title} - ${siteConfig.subtitle}`;
 }
 
+// for "lang" attribute
+let lang: string = i18n(I18nKey.lang) || 'en'
+
 ---
 
 <!DOCTYPE html>
-<html lang="en" isHome={isHomePage} pathname={testPathName} class="bg-[var(--page-bg)] transition text-[14px] md:text-[16px]">
+<html lang={lang} isHome={isHomePage} pathname={testPathName} class="bg-[var(--page-bg)] transition text-[14px] md:text-[16px]">
 	<head>
 
 		<title>{pageTitle}</title>
