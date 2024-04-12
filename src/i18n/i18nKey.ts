@@ -1,4 +1,6 @@
 enum I18nKey {
+  lang = 'lang', // For ISO language code
+
   home = 'home',
   about = 'about',
   archive = 'archive',

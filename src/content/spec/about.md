@@ -1,5 +1,7 @@
 # About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+This is the demo site for [Fuwari-Fork](https://github.com/m4k15y6666fk/fuwari).
+
+Original project is [Fuwari](https://github.com/saicaca/fuwari).
 
 > ### Sources of images used in this site
 > - [Unsplash](https://unsplash.com/)
