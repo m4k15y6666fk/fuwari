@@ -1,8 +1,11 @@
 <script lang="ts">
-import { onMount } from 'svelte'
-let keywordDesktop = ''
-let keywordMobile = ''
-let result = []
+import { onMount } from 'svelte';
+import { toHalfWidth } from '@utils/search-utils.mjs';
+
+let keywordDesktop = '';
+let keywordMobile = '';
+let result = [];
+
 const fakeResult = [{
     url: '/',
     meta: {
@@ -32,7 +35,7 @@ onMount(() => {
 
         let arr = [];
         if (import.meta.env.PROD) {
-            const ret = await pagefind.search(keyword)
+            const ret = await pagefind.search(toHalfWidth(keyword))
             for (const item of ret.results) {
                 arr.push(await item.data())
             }
@@ -69,7 +72,8 @@ $: search(keywordMobile, false)
       dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
 ">
     <slot name="search-icon"></slot>
-    <input placeholder="Search" bind:value={keywordDesktop} on:focus={() => search(keywordDesktop, true)}
+    <input placeholder="Search"
+           bind:value={keywordDesktop} on:focus={() => search(keywordDesktop, true)}
            class="transition-all pl-10 text-sm bg-transparent outline-0
          h-full w-40 active:w-60 focus:w-60 text-black/50 dark:text-white/50"
     >
