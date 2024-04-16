@@ -9,6 +9,7 @@ import I18nKey from "@i18n/i18nKey";
 import {getDir, getPostUrlBySlug} from "@utils/url-utils";
 import License from "@components/misc/License.astro";
 import {licenseConfig} from "src/config";
+import {getLicenseData} from '@utils/license-utils.mjs';
 import Markdown from "@components/misc/Markdown.astro";
 import path from "path";
 
@@ -84,7 +85,7 @@ const { remarkPluginFrontmatter } = await entry.render();
                 <Content />
             </Markdown>
 
-            {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
+            {getLicenseData(entry.data.license).enable && <License licenseType={entry.data.license} title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
         </div>
     </div>

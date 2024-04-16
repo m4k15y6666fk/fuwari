@@ -5,6 +5,7 @@ description: 日本語のブログ記事の例
 tags: [Markdown, Blogging, Demo]
 category: Examples
 draft: false
+license: CC BY 4.0
 ---
 
 # 日本語のタイトル
@@ -29,6 +30,8 @@ draft: false
 3つのドット...は省略記号に変換されます。
 
 ## 羅生門
+
+### 芥川龍之介
 
 　ある日の暮方の事である。一人の下人《げにん》が、羅生門《らしょうもん》の下で雨やみを待っていた。
 
