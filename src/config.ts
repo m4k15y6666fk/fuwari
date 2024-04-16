@@ -10,10 +10,10 @@ export const siteConfig: SiteConfig = {
   title: 'Fuwari (Fork)',
   subtitle: 'Demo Site',
   lang: 'ja',
-  themeHue: 250,
+  themeHue: 180, // 250 is default.
   banner: {
-    enable: false,
-    src: 'assets/images/demo-banner.png',
+    enable: true, // false is default.
+    src: 'assets/images/demo-banner-inforkedversion.png',
   },
 }
 
@@ -53,8 +53,10 @@ export const profileConfig: ProfileConfig = {
   ],
 }
 
+// Not used in this Fork project.
+// TODO: Identify the file that references "licenseConfig" variable
 export const licenseConfig: LicenseConfig = {
   enable: true,
-  name: 'CC BY 4.0',
-  url: 'https://creativecommons.org/licenses/by/4.0/',
+  name: 'CC BY-NC-SA 4.0',
+  url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
 }
