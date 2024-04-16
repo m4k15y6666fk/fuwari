@@ -1,5 +1,5 @@
 import tailwind from "@astrojs/tailwind"
-import Compress from "astro-compress"
+import Compress from "@playform/compress"
 import icon from "astro-icon"
 import { defineConfig } from "astro/config"
 import Color from "colorjs.io"
