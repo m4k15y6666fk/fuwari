@@ -5,8 +5,13 @@ module.exports = {
   darkMode: "class", // allows toggling dark mode manually
   theme: {
     extend: {
+      /**
+       * If "Fontsource" is available, set by "import" in Layout.astro.
+       * If "Fontsource" is not available, set by "@font-face" in GlobalStyles.astro.
+       * - font path: src/assets/fonts
+       */
       fontFamily: {
-        sans: ["Roboto", "sans-serif", ...defaultTheme.fontFamily.sans],
+        sans: ["Roboto", "Noto Sans JP", "sans-serif", ...defaultTheme.fontFamily.sans],
       },
     },
   },
