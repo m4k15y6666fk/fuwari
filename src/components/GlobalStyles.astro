@@ -317,5 +317,11 @@ color_set({
     animation-delay: 400ms;
 }
 
+/** Fixed cover images of postcards was not centered when width is less than 768px */
+@media (max-width: 767px) {
+  .is-cover-image {
+    max-height: 20vh;
+  }
+}
 
 </style>
