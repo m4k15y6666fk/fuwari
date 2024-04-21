@@ -2,9 +2,10 @@
 title: 日本語記事のサンプル
 published: 2024-04-13
 description: 日本語のブログ記事の例
-tags: [Markdown, Blogging, Demo]
+tags: [Markdown, Blogging, Demo, 日本語 (Japanese)]
 category: Examples
 draft: false
+license: CC BY 4.0
 ---
 
 # 日本語のタイトル
@@ -29,6 +30,8 @@ draft: false
 3つのドット...は省略記号に変換されます。
 
 ## 羅生門
+
+### 芥川龍之介
 
 　ある日の暮方の事である。一人の下人《げにん》が、羅生門《らしょうもん》の下で雨やみを待っていた。
 

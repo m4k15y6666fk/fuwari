@@ -9,7 +9,9 @@ import I18nKey from "@i18n/i18nKey";
 import {getDir, getPostUrlBySlug} from "@utils/url-utils";
 import License from "@components/misc/License.astro";
 import {licenseConfig} from "src/config";
+import {getLicenseData} from '@utils/license-utils.mjs';
 import Markdown from "@components/misc/Markdown.astro";
+import TOCWrapper from '@components/misc/TOCWrapper.astro';
 import path from "path";
 
 export async function getStaticPaths() {
@@ -22,7 +24,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
 
 const { remarkPluginFrontmatter } = await entry.render();
 
@@ -81,10 +83,11 @@ const { remarkPluginFrontmatter } = await entry.render();
 
 
             <Markdown class="mb-6 markdown-content onload-animation">
+                {entry.data.toc && <TOCWrapper headings={headings} as={entry.data.toc}/>}
                 <Content />
             </Markdown>
 
-            {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
+            {getLicenseData(entry.data.license).enable && <License licenseType={entry.data.license} title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
         </div>
     </div>

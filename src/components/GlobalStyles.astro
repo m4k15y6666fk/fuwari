@@ -176,6 +176,48 @@ color_set({
 @tailwind components;
 @tailwind utilities;
 
+/** 
+ * Set fonts directly here if Fontsource is not available.
+ * - font path: ../assets/fonts
+ */
+@layer base {
+    /** For variable font, write like this */
+    @font-face {
+    font-family: "Noto Sans JP";
+    font-optical-sizing: auto;
+    font-weight: 400 500 700;
+    font-display: swap;
+    font-style: normal;
+    src: url(../assets/fonts/NotoSansJP/NotoSansJP-VariableFont_wght.ttf) format('truetype');
+  }
+
+  /** For static font, write like this:
+   *
+    @font-face {
+    font-family: "Kaku Gothic New";
+    font-weight: 400 500 700;
+    font-display: swap;
+    font-style: normal;
+    src: url(../assets/fonts/Zen_Kaku_Gothic_New/ZenKakuGothicNew-Regular.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: "Kaku Gothic New";
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+    src: url(../assets/fonts/Zen_Kaku_Gothic_New/ZenKakuGothicNew-Medium.ttf) format('truetype')
+  }
+  @font-face {
+    font-family: "Kaku Gothic New";
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+    src: url(../assets/fonts/Zen_Kaku_Gothic_New/ZenKakuGothicNew-Bold.ttf) format('truetype')
+  }
+   *
+   */
+}
+
 @layer components {
     .card-base {
         @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition;
@@ -275,5 +317,11 @@ color_set({
     animation-delay: 400ms;
 }
 
+/** Fixed cover images of postcards was not centered when width is less than 768px */
+@media (max-width: 767px) {
+  .is-cover-image {
+    max-height: 20vh;
+  }
+}
 
 </style>

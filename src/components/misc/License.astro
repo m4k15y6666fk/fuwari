@@ -2,6 +2,7 @@
 import {formatDateToYYYYMMDD} from "../../utils/date-utils";
 import { Icon } from 'astro-icon/components';
 import {licenseConfig, profileConfig} from "../../config";
+import {getLicenseData, isCreativeCommons} from "@utils/license-utils.mjs";
 import {i18n} from "../../i18n/translation";
 import I18nKey from "../../i18n/i18nKey";
 
@@ -10,6 +11,7 @@ interface Props {
     slug: string;
     pubDate: Date;
     class: string;
+    licenseType: string;
 }
 
 const { title, slug, pubDate } = Astro.props;
@@ -17,6 +19,8 @@ const className = Astro.props.class;
 const profileConf = profileConfig;
 const licenseConf = licenseConfig;
 const postUrl = decodeURIComponent(Astro.url.toString());
+
+const licenseObject = getLicenseData(Astro.props.licenseType);
 
 ---
 <div class=`relative transition overflow-hidden bg-[var(--license-block-bg)] py-5 px-6 ${className}`>
@@ -37,8 +41,8 @@ const postUrl = decodeURIComponent(Astro.url.toString());
         </div>
         <div>
             <div class="transition text-black/30 dark:text-white/30 text-sm">{i18n(I18nKey.license)}</div>
-            <a href={licenseConf.url} target="_blank" class="link text-[var(--primary)] whitespace-nowrap">{licenseConf.name}</a>
+            <a href={licenseObject.url} target="_blank" class="link text-[var(--primary)] whitespace-nowrap">{licenseObject.name}</a>
         </div>
     </div>
-    <Icon name="fa6-brands:creative-commons" class="transition absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-black/5 dark:text-white/5" size="240"></Icon>
+    {isCreativeCommons(Astro.props.licenseType) && <Icon name="fa6-brands:creative-commons" class="transition absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-black/5 dark:text-white/5" size="240"></Icon>}
 </div>

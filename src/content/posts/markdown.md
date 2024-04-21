@@ -5,6 +5,7 @@ description: A simple example of a Markdown blog post.
 tags: [Markdown, Blogging, Demo]
 category: Examples
 draft: false
+license: CC BY-NC-SA 4.0
 ---
 
 # An h1 header

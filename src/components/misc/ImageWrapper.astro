@@ -1,16 +1,21 @@
 ---
 import path from "path";
 interface Props {
-    id?: string
+    id?: string;
     src: string;
     class?: string;
-    alt?: string
-    basePath?: string
+    alt?: string;
+    basePath?: string;
+    isCoverImage?: string; // whether the value is null or not
 }
 import { Image } from 'astro:assets';
 
 const {id, src, alt, basePath = '/'} = Astro.props;
 const className = Astro.props.class;
+
+// List of classes to specify directly in the <img /> tag
+const imgClassList = "w-full h-full object-center object-cover"
+                     + (Astro.props.isCoverImage ? " is-cover-image" : "");
 
 const isLocal = !(src.startsWith('/') || src.startsWith('http') || src.startsWith('https') || src.startsWith('data:'));
 
@@ -26,7 +31,7 @@ if (isLocal) {
 ---
 <div class:list={[className, 'overflow-hidden relative']}>
     <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>
-    {isLocal && <Image src={img} alt={alt || ""} class="w-full h-full object-center object-cover" />}
-    {!isLocal && <img src={src} alt={alt || ""} class="w-full h-full object-center object-cover" />}
+    {isLocal && <Image src={img} alt={alt || ""} class={imgClassList} />}
+    {!isLocal && <img src={src} alt={alt || ""} class={imgClassList} />}
 </div>
 
