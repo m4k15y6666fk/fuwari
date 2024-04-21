@@ -10,6 +10,7 @@ const postsCollection = defineCollection({
     tags: z.array(z.string()).optional(),
     category: z.string().optional(),
     license: z.string().optional(),
+    toc: z.string().optional(),
   }),
 })
 export const collections = {

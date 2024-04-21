@@ -1,0 +1,79 @@
+---
+import type { MarkdownHeading } from 'astro';
+import TOC from './TOC.astro';
+
+interface Props {
+    headings: MarkdownHeading[];
+    as?: string;
+    use?: any;
+    depth?: number;
+    maxDepth?: number;
+}
+
+const { headings, as } = Astro.props;
+const toc = headings.map((object :MarkdownHeading) => {
+    return { depth: object.depth, url: '#' + object.slug, title: (object.text).replace(/\#$/, '') };
+});
+---
+
+<details class="details-toc">
+    <summary>目次 / Contents</summary>
+    <TOC toc={toc} as={as} />
+</details>
+
+<style is:global>
+    details.details-toc {
+        margin-bottom: 2rem;
+        padding: 0.5rem 1rem;
+        border-style: dotted;
+        border-width: thin;
+        border-radius: 10px;
+    }
+    details.details-toc > h1 {
+        display: none;
+    }
+
+
+    details.details-toc > ul {
+        margin-bottom: 0;
+    }
+    /*
+    details.details-toc > h3 {
+    margin-top: 1rem;
+    }
+    details.details-toc > h3:last-child {
+    display: none;
+    }
+    */
+    details.details-toc:not([open]) > ul {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all .6s .2s;
+    }
+    details.details-toc[open] > ul {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+
+
+    details.details-toc > ol {
+        margin-bottom: 0;
+    }
+    /*
+    details.details-toc > h3 {
+    margin-top: 1rem;
+    }
+    details.details-toc > h3:last-child {
+    display: none;
+    }
+    */
+    details.details-toc:not([open]) > ol {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all .6s .2s;
+    }
+    details.details-toc[open] > ol {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+</style>

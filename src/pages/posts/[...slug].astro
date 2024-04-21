@@ -11,6 +11,7 @@ import License from "@components/misc/License.astro";
 import {licenseConfig} from "src/config";
 import {getLicenseData} from '@utils/license-utils.mjs';
 import Markdown from "@components/misc/Markdown.astro";
+import TOCWrapper from '@components/misc/TOCWrapper.astro';
 import path from "path";
 
 export async function getStaticPaths() {
@@ -23,7 +24,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
 
 const { remarkPluginFrontmatter } = await entry.render();
 
@@ -82,6 +83,7 @@ const { remarkPluginFrontmatter } = await entry.render();
 
 
             <Markdown class="mb-6 markdown-content onload-animation">
+                {entry.data.toc && <TOCWrapper headings={headings} as={entry.data.toc}/>}
                 <Content />
             </Markdown>
 
