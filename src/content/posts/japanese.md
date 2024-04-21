@@ -2,7 +2,7 @@
 title: 日本語記事のサンプル
 published: 2024-04-13
 description: 日本語のブログ記事の例
-tags: [Markdown, Blogging, Demo]
+tags: [Markdown, Blogging, Demo, 日本語 (Japanese)]
 category: Examples
 draft: false
 license: CC BY 4.0
