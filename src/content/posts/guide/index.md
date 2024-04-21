@@ -24,6 +24,8 @@ image: ./cover.jpg
 tags: [Foo, Bar]
 category: Front-end
 draft: false
+license: CC BY-NC-SA 4.0
+toc: number
 ---
 ```
 
@@ -35,7 +37,9 @@ draft: false
 | `image`       | The cover image path of the post.<br/>1. Start with `http://` or `https://`: Use web image<br/>2. Start with `/`: For image in `public` dir<br/>3. With none of the prefixes: Relative to the markdown file |
 | `tags`        | The tags of the post.                                                                                                                                                                                       |
 | `category`    | The category of the post.                                                                                                                                                                                   |
-| `draft`        | If this post is still a draft, which won't be displayed.                                                                                                                                                    |
+| `draft`       | If this post is still a draft, which won't be displayed.                                                                                                                                                    |
+| `license`     | Select a license for this post. Supported value is listed in "src/utils/license-utils.mjs". You can add other licenses by changing this file.                                                                   |
+| `toc`         | Select a display format of a table of contents of the post. Supported value is "number" or "bullet".                                                                                                                                      |
 
 ## Where to Place the Post Files
 

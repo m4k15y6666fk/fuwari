@@ -54,7 +54,7 @@ export const profileConfig: ProfileConfig = {
 }
 
 // Not used in this Fork project.
-// TODO: Identify the file that references "licenseConfig" variable
+// TODO: Identify the file that uses "licenseConfig" variable
 export const licenseConfig: LicenseConfig = {
   enable: true,
   name: 'CC BY-NC-SA 4.0',
