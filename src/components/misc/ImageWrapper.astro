@@ -1,37 +1,54 @@
 ---
-import path from "path";
+import path from 'path'
 interface Props {
-    id?: string;
-    src: string;
-    class?: string;
-    alt?: string;
-    basePath?: string;
-    isCoverImage?: string; // whether the value is null or not
+  id?: string
+  src: string
+  class?: string
+  alt?: string
+  position?: string
+  basePath?: string
+  isCoverImage?: string; // whether the value is null or not
 }
-import { Image } from 'astro:assets';
+import { Image } from 'astro:assets'
+import { url } from '../../utils/url-utils'
 
-const {id, src, alt, basePath = '/'} = Astro.props;
-const className = Astro.props.class;
+const { id, src, alt, position = 'center', basePath = '/' } = Astro.props
+const className = Astro.props.class
 
 // List of classes to specify directly in the <img /> tag
 const imgClassList = "w-full h-full object-center object-cover"
                      + (Astro.props.isCoverImage ? " is-cover-image" : "");
 
-const isLocal = !(src.startsWith('/') || src.startsWith('http') || src.startsWith('https') || src.startsWith('data:'));
+const isLocal = !(
+  src.startsWith('/') ||
+  src.startsWith('http') ||
+  src.startsWith('https') ||
+  src.startsWith('data:')
+)
+const isPublic = src.startsWith('/')
 
 // TODO temporary workaround for images dynamic import
 // https://github.com/withastro/astro/issues/3373
-let img;
+let img
 if (isLocal) {
-    const files = import.meta.glob<ImageMetadata>("../../**", { import: 'default' });
-    let normalizedPath = path.normalize(path.join("../../", basePath, src)).replace(/\\/g, "/");
-    img = await (files[normalizedPath])();
+  const files = import.meta.glob<ImageMetadata>('../../**', {
+    import: 'default',
+  })
+  let normalizedPath = path
+    .normalize(path.join('../../', basePath, src))
+    .replace(/\\/g, '/')
+  img = await files[normalizedPath]()
+  if (!img) {
+    console.error(`No image found for path ${normalizedPath}`)
+  }
 }
 
+const imageClass = 'w-full h-full object-cover'
+const imageStyle = `object-position: ${position}`
 ---
-<div class:list={[className, 'overflow-hidden relative']}>
+<div id={id} class:list={[className, 'overflow-hidden relative']}>
     <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>
-    {isLocal && <Image src={img} alt={alt || ""} class={imgClassList} />}
-    {!isLocal && <img src={src} alt={alt || ""} class={imgClassList} />}
+    {isLocal && img && <Image src={img} alt={alt || ""} class={imageClass} style={imageStyle}/>}
+    {!isLocal && <img src={isPublic ? url(src) : src} alt={alt || ""} class={imageClass} style={imageStyle}/>}
 </div>
 
